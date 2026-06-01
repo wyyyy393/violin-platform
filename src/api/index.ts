@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3000';
 
 class ApiClient {
   private token: string | null = null;
@@ -23,8 +23,11 @@ class ApiClient {
   private async request(endpoint: string, options: RequestInit = {}) {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
-      ...options.headers,
     };
+
+    if (options.headers) {
+      Object.assign(headers, options.headers);
+    }
 
     const token = this.getToken();
     if (token) {
@@ -67,6 +70,16 @@ class ApiClient {
   }
 }
 
+function buildQueryString(params: Record<string, string | number | boolean | undefined>): string {
+  const searchParams = new URLSearchParams();
+  for (const key in params) {
+    if (params[key] !== undefined && params[key] !== null) {
+      searchParams.append(key, String(params[key]));
+    }
+  }
+  return searchParams.toString();
+}
+
 export const api = new ApiClient();
 
 export const authApi = {
@@ -77,8 +90,10 @@ export const authApi = {
 };
 
 export const productApi = {
-  getProducts: (params?: any) =>
-    api.get(`/products?${new URLSearchParams(params)}`),
+  getProducts: (params?: Record<string, string | number>) => {
+    const query = params ? buildQueryString(params) : '';
+    return api.get(`/products${query ? `?${query}` : ''}`);
+  },
   getProduct: (id: string) =>
     api.get(`/products/${id}`),
 };
@@ -86,8 +101,10 @@ export const productApi = {
 export const orderApi = {
   createOrder: (data: { buyerId: string; items: { productId: string; price: number }[] }) =>
     api.post('/orders', data),
-  getOrders: (params?: { buyerId: string; status?: string }) =>
-    api.get(`/orders?${new URLSearchParams(params)}`),
+  getOrders: (params?: { buyerId: string; status?: string }) => {
+    const query = params ? buildQueryString(params as Record<string, string>) : '';
+    return api.get(`/orders${query ? `?${query}` : ''}`);
+  },
   updateStatus: (id: string, status: string) =>
     api.put(`/orders/${id}/status`, { status }),
 };
@@ -106,8 +123,10 @@ export const favoriteApi = {
 export const reviewApi = {
   create: (data: { userId: string; productId: string; rating: number; content: string }) =>
     api.post('/reviews', data),
-  getProductReviews: (params: { productId: string; page?: number; limit?: number }) =>
-    api.get(`/reviews?${new URLSearchParams(params)}`),
+  getProductReviews: (params: { productId: string; page?: number; limit?: number }) => {
+    const query = buildQueryString(params as Record<string, string | number>);
+    return api.get(`/reviews?${query}`);
+  },
 };
 
 export const messageApi = {
@@ -122,8 +141,10 @@ export const messageApi = {
 export const qaApi = {
   createQuestion: (data: { userId: string; title: string; content: string; category: string }) =>
     api.post('/qa/questions', data),
-  getQuestions: (params?: { category?: string; status?: string; page?: number; limit?: number }) =>
-    api.get(`/qa/questions?${new URLSearchParams(params)}`),
+  getQuestions: (params?: { category?: string; status?: string; page?: number; limit?: number }) => {
+    const query = params ? buildQueryString(params as Record<string, string | number>) : '';
+    return api.get(`/qa/questions${query ? `?${query}` : ''}`);
+  },
   getQuestion: (id: string) =>
     api.get(`/qa/questions/${id}`),
   createAnswer: (data: { questionId: string; userId: string; content: string; isExpert?: boolean }) =>
