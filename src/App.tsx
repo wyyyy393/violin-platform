@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
@@ -13,27 +14,29 @@ import { Services } from './pages/Services';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductList />} />
-            <Route path="/products/:id" element={<ProductDetail />} />
-            <Route path="/publish" element={<PublishProduct />} />
-            <Route path="/information" element={<Information />} />
-            <Route path="/information/:id" element={<Information />} />
-            <Route path="/qa" element={<QA />} />
-            <Route path="/qa/:id" element={<QA />} />
-            <Route path="/user" element={<UserCenter />} />
-            <Route path="/seller" element={<SellerCenter />} />
-            <Route path="/services" element={<Services />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<ProductList />} />
+              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/publish" element={<PublishProduct />} />
+              <Route path="/information" element={<Information />} />
+              <Route path="/information/:id" element={<Information />} />
+              <Route path="/qa" element={<QA />} />
+              <Route path="/qa/:id" element={<QA />} />
+              <Route path="/user" element={<UserCenter />} />
+              <Route path="/seller" element={<SellerCenter />} />
+              <Route path="/services" element={<Services />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
