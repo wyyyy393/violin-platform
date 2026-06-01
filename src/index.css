@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-cream font-mono text-black;
+  min-height: 100vh;
+}
+
+@layer components {
+  .btn-brutal {
+    @apply bg-white border-4 border-black px-6 py-3 font-bold uppercase;
+    @apply shadow-brutal transition-all duration-100 cursor-pointer;
+    @apply hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none;
+    @apply active:translate-x-[4px] active:translate-y-[4px] active:shadow-none;
+  }
+
+  .btn-brutal-primary {
+    @apply bg-neon-yellow border-4 border-black px-6 py-3 font-bold uppercase;
+    @apply shadow-brutal transition-all duration-100 cursor-pointer;
+    @apply hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none;
+  }
+
+  .btn-brutal-secondary {
+    @apply bg-neon-pink border-4 border-black px-6 py-3 font-bold uppercase;
+    @apply shadow-brutal transition-all duration-100 cursor-pointer;
+    @apply hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none;
+  }
+
+  .btn-brutal-blue {
+    @apply bg-neon-blue text-white border-4 border-black px-6 py-3 font-bold uppercase;
+    @apply shadow-brutal transition-all duration-100 cursor-pointer;
+    @apply hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none;
+  }
+
+  .card-brutal {
+    @apply bg-white border-4 border-black shadow-brutal;
+  }
+
+  .input-brutal {
+    @apply border-4 border-black bg-white px-4 py-2 outline-none font-mono;
+    @apply focus:shadow-brutal transition-shadow duration-100;
+  }
+
+  .tag-brutal {
+    @apply inline-block px-3 py-1 border-2 border-black text-sm font-bold uppercase;
+  }
+
+  .title-display {
+    @apply font-display uppercase tracking-wider;
+  }
+
+  .section-title {
+    @apply font-display text-4xl uppercase border-4 border-black bg-neon-yellow px-6 py-4 shadow-brutal-sm inline-block;
+  }
+}
+
+.container-brutal {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.grid-brutal {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

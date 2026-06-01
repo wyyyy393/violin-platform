@@ -1,0 +1,151 @@
+import { Question, User } from '../types';
+
+export const users: User[] = [
+  {
+    id: 'u1',
+    username: '琴童家长小明',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200',
+    email: 'xiaoming@example.com',
+    phone: '138****1234',
+    role: 'buyer',
+    creditScore: 88,
+    joinedDate: '2023-06-15',
+  },
+  {
+    id: 'u2',
+    username: '琴行王老板',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200',
+    email: 'wangboss@example.com',
+    phone: '139****5678',
+    role: 'seller',
+    creditScore: 95,
+    salesCount: 128,
+    joinedDate: '2019-03-20',
+  },
+  {
+    id: 'u3',
+    username: '小提琴老师李',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200',
+    email: 'liteacher@example.com',
+    phone: '137****9012',
+    role: 'expert',
+    creditScore: 98,
+    joinedDate: '2018-09-10',
+  },
+];
+
+export const questions: Question[] = [
+  {
+    id: 'q1',
+    title: '6岁小孩学小提琴，买什么尺寸合适？',
+    type: '儿童换琴',
+    description: '孩子今年6岁，身高115cm左右，刚学小提琴两个月。请问应该买1/4还是1/8的琴？预算在2000以内有什么推荐吗？',
+    author: users[0],
+    publishDate: '2024-01-20',
+    viewCount: 234,
+    answerCount: 3,
+    answers: [
+      {
+        id: 'a1',
+        content: '根据您孩子的年龄和身高，建议选择1/4尺寸的琴。1/8的琴对于6岁孩子来说可能已经偏小了。可以考虑雅马哈YVN100 1/4，性价比很高，适合初学者。',
+        author: users[2],
+        publishDate: '2024-01-20',
+        helpful: 45,
+      },
+      {
+        id: 'a2',
+        content: '补充一下，1/4的琴通常可以用到8-9岁，这样性价比更高。另外建议购买时选择支持试音的商家，确保音色和手感都合适。',
+        author: users[1],
+        publishDate: '2024-01-20',
+        helpful: 32,
+      },
+    ],
+    reward: 50,
+  },
+  {
+    id: 'q2',
+    title: '准备艺考，8000预算能买到什么级别的小提琴？',
+    type: '艺考用琴',
+    description: '我是高三音乐生，准备参加艺术类考试。现在用的是一个普通的练习琴，想升级一下。预算8000左右，有什么好的推荐吗？需要手感好、音色出色的。',
+    author: users[0],
+    publishDate: '2024-01-18',
+    viewCount: 456,
+    answerCount: 5,
+    answers: [
+      {
+        id: 'a3',
+        content: '8000元预算可以考虑入门专业级的琴了。建议选择有平台认证的二手琴，性价比更高。可以看看平台上带证书的意大利手工琴，这个价位能买到成色很好的。',
+        author: users[2],
+        publishDate: '2024-01-18',
+        helpful: 67,
+      },
+    ],
+    reward: 100,
+  },
+  {
+    id: 'q3',
+    title: '二手小提琴估价：2018年的雅马哈AV5能卖多少？',
+    type: '二手估价',
+    description: '手上有一把雅马哈AV5，2018年购买的，琴身成色还不错，有轻微磨损。想问一下现在能卖什么价格？在哪里卖比较靠谱？',
+    author: users[0],
+    publishDate: '2024-01-16',
+    viewCount: 189,
+    answerCount: 2,
+    answers: [
+      {
+        id: 'a4',
+        content: '雅马哈AV5二手价格大概在原价的6-7成左右，具体要看成色和附件是否齐全。建议使用平台的估价服务，可以获得更准确的估价。另外，在平台上交易有平台保障，更安全。',
+        author: users[1],
+        publishDate: '2024-01-16',
+        helpful: 28,
+      },
+    ],
+  },
+  {
+    id: 'q4',
+    title: '小提琴琴颈有点开胶，还能修吗？',
+    type: '维修问题',
+    description: '发现琴颈和琴身连接处有轻微开胶的情况，不是很严重。这种情况可以修复吗？大概需要多少钱？会影响音色吗？',
+    author: users[0],
+    publishDate: '2024-01-14',
+    viewCount: 123,
+    answerCount: 2,
+    answers: [
+      {
+        id: 'a5',
+        content: '开胶必须及时修复，否则会越来越严重。建议找专业的制琴师维修，费用大概在200-500元不等。修复后音色基本不受影响，但一定要找有经验的师傅。平台上有合作的制琴师可以预约维修服务。',
+        author: users[2],
+        publishDate: '2024-01-14',
+        helpful: 56,
+      },
+    ],
+  },
+  {
+    id: 'q5',
+    title: '初学者买什么品牌的琴弦比较好？',
+    type: '配件选择',
+    description: '刚学小提琴，想知道初学者应该选择什么价位的琴弦？有没有性价比高的推荐？多久换一次琴弦比较合适？',
+    author: users[0],
+    publishDate: '2024-01-12',
+    viewCount: 345,
+    answerCount: 4,
+    answers: [
+      {
+        id: 'a6',
+        content: '初学者建议选择Dominant或 Larsen Student系列的琴弦，价格在100-200元之间，性价比很高。普通练习频率下，建议每6-12个月更换一次琴弦。',
+        author: users[1],
+        publishDate: '2024-01-12',
+        helpful: 41,
+      },
+    ],
+  },
+];
+
+export const questionTypes = [
+  '买琴咨询',
+  '二手估价',
+  '维修问题',
+  '配件选择',
+  '儿童换琴',
+  '艺考用琴',
+];
